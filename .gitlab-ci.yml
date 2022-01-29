@@ -1,7 +1,11 @@
-image: registry.gitlab.com/pages/luiscarlos-alt:latest
+image: alpine:latest
 
 pages:
+  stage: deploy
   script:
-    - echo "Deploy to staging server"
-  only:
-    - main
+  - echo 'Deploy...'
+  artifacts:
+    paths:
+    - public
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
